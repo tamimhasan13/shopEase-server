@@ -20,17 +20,13 @@ const PORT = process.env.PORT || 5000;
 // app.use(cors());
 app.use(
   cors({
-    origin:"http://localhost:5174",
+    origin:process.env.FRONTEND_URL,
     credentials: true,
   }),
 );
 
 app.post('/stripe',express.raw({type:'application/json'}),stripeWebhooks)
-// app.post(
-//   "/api/order/stripe-webhook",
-//   express.raw({ type: "application/json" }),
-//   stripeWebhooks,
-// );
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
